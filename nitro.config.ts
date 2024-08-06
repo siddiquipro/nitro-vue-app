@@ -15,6 +15,10 @@ export default defineNitroConfig({
   ],
   handlers: [
     {
+      route: "/api/**",
+      handler: "./server/api/[...name].ts",
+    },
+    {
       route: "/**",
       handler: "./server/app.ts",
     },

@@ -15,7 +15,7 @@ const getHtmlFile = async () => {
 export default defineEventHandler(async (event) => {
   console.log(`hello from ${event.path}`);
 
-  const prodTemplate = getHtmlFile();
+  const prodTemplate = await getHtmlFile();
   if (prodTemplate) return prodTemplate;
 
   const template: string = await useStorage().getItem("root:index.html");

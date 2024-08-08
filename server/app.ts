@@ -1,25 +1,20 @@
-import { fileURLToPath } from "url";
-import { dirname, join } from "path";
-import { readFileSync } from "fs";
-
 const config = {
   isProd: process.env.NODE_ENV === "production",
   html: "",
 };
 
-const getHtmlFile = () => {
+const getHtmlFile = async () => {
   if (!config.isProd) return;
 
   if (config.html) return config.html;
 
-  const currDir = dirname(fileURLToPath(import.meta.url));
-  const indexFile = join(currDir, "..", "public", "index.html");
-
-  config.html = readFileSync(indexFile, "utf8");
+  config.html = await $fetch<string>("/");
   return config.html;
 };
 
 export default defineEventHandler(async (event) => {
+  console.log(`hello from ${event.path}`);
+
   const prodTemplate = getHtmlFile();
   if (prodTemplate) return prodTemplate;
 

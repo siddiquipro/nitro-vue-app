@@ -1,28 +1,31 @@
-import { defineNitroConfig } from "nitropack/config";
 import { createServer } from "vite";
 import { defineLazyEventHandler, fromNodeMiddleware } from "h3";
 
 //https://nitro.unjs.io/config
 export default defineNitroConfig({
-  srcDir: "server",
   serveStatic: true,
   publicAssets: [
     {
-      baseURL: "./",
-      dir: "../dist",
-      maxAge: 60 * 60 * 24 * 365, // 1 year
+      baseURL: "/assets",
+      dir: ".nitro/client/assets",
+      maxAge: 60 * 60 * 24 * 365,
     },
   ],
-  handlers: [
+
+  serverAssets: [
     {
-      route: "/api/**",
-      handler: "./server/api/[...name].ts",
+      baseName: "templates",
+      dir: ".nitro/templates",
     },
+  ],
+
+  handlers: [
     {
       route: "/**",
       handler: "./server/app.ts",
     },
   ],
+
   devHandlers: [
     {
       route: "/",

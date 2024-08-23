@@ -2,16 +2,20 @@
   "name": "nitro-vue-app",
   "private": true,
   "scripts": {
-    "build": "vite build && nitro build",
+    "build": "vite build && npm run copy && nitro build",
     "dev": "nitro dev",
+    "copy": "copyfiles -f ./.nitro/client/index.html ./.nitro/templates",
     "prepare": "nitro prepare",
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
+    "copyfiles": "^2.4.1",
     "nitropack": "latest"
   },
   "dependencies": {
+    "@hono/node-server": "^1.12.1",
     "@vitejs/plugin-vue": "^5.1.2",
+    "hono": "^4.5.8",
     "rollup-plugin-vue": "^6.0.0",
     "vite": "^5.3.5",
     "vue": "^3.4.35"

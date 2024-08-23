@@ -1,6 +1,7 @@
 {
   "name": "nitro-vue-app",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "vite build && npm run copy && nitro build",
     "dev": "nitro dev",

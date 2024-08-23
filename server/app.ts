@@ -1,4 +1,4 @@
-import app from "../hono/app";
+import app from "../hono/app.js";
 
 export default defineEventHandler(async (event) => {
   const webReq = toWebRequest(event);

@@ -1,7 +1,10 @@
 import { Hono } from "hono";
+import { book } from "./books.js";
 const app = new Hono();
 
 const isProd = process.env.NODE_ENV === "production";
+
+app.route("/api/books", book);
 
 app.get("/api", (c) => {
   return c.json({ msg: "Hello API!", path: c.req.path, time: Date.now() });
